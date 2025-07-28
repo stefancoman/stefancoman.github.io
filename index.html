@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Stefan Coman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Stefan Coman">
+    <meta property="og:description" content="Caffeine-powered dev turning messy ideas into working software.">
+    <meta property="og:image" content="https://via.placeholder.com/600x315/ff0040/ffffff?text=Stefan+Coman">
+    <meta name="theme-color" content="#ff0040">
+
     <style>
         :root{
             --bg:#0d0d0d;
@@ -27,10 +32,33 @@
         h1{font-size:2.5rem;color:var(--accent);}
         h2{margin:1.5rem 0 .5rem;font-size:1.4rem;}
         a{color:var(--accent);text-decoration:none;}
-        ul{list-style:"- ";padding-left:1rem;}
-        section{margin-bottom:2rem;}
-        .skills{display:flex;flex-wrap:wrap;gap:.5rem;}
-        .skills li{background:#111;padding:.3rem .6rem;border:1px solid var(--accent);}
+
+        .skills{
+            display:flex;
+            flex-wrap:wrap;
+            gap:.75rem;
+            margin-top:.5rem;
+        }
+        .skill-pill{
+            background:#111;
+            border:1px solid var(--accent);
+            padding:.4rem .8rem;
+            cursor:pointer;
+            transition:all .3s ease;
+            font-size:.9rem;
+            border-radius:4px;
+            position:relative;
+        }
+        .skill-pill:hover{
+            background:var(--accent);
+            color:#000;
+            transform:scale(1.15) translateY(-3px);
+            box-shadow:0 4px 12px rgba(255,0,64,.4);
+        }
+
+        section{opacity:0;transform:translateY(20px);transition:all .6s;}
+        section.show{opacity:1;transform:none;}
+
         footer{margin-top:3rem;font-size:.8rem;color:#666;}
     </style>
 </head>
@@ -44,28 +72,28 @@
 <section>
     <h2>Who Am I?</h2>
     <p>
-        I’m Stefan — a 15-year-old developer from Romania who turns messy ideas into working software.  
+        I’m Stefan — a 15-year-old Romanian developer who turns messy ideas into working software.  
         Fast commits, clean code. If it’s broken, I’ll fix it; if it doesn’t exist, I’ll make it.
     </p>
 </section>
 
 <section>
     <h2>Core Skills</h2>
-    <ul class="skills">
-        <li>Python (sync & async)</li>
-        <li>JavaScript (front-end)</li>
-        <li>C++ (when speed matters)</li>
-        <li>HTML (for websites)</li>
-        <li>CSS (for styling)</li>
-    </ul>
+    <div class="skills">
+        <div class="skill-pill">Python (sync & async)</div>
+        <div class="skill-pill">JavaScript (front)</div>
+        <div class="skill-pill">C++ (when speed matters)</div>
+        <div class="skill-pill">HTML (for websites, duh)</div>
+        <div class="skill-pill">CSS (to make websites look good)</div>
+        <div class="skill-pill">Lua (for Roblox)</div>
+    </div>
 </section>
 
 <section>
     <h2>Recent Work</h2>
     <ul>
-        <li><strong>2025</strong> – Built an internal automation toolkit that saved 30 hrs/week.</li>
-        <li><strong>2025</strong> – Released an open-source Flappy Bird clone that was made in Python.</li>
         <li><strong>2025</strong> – Made this website!</li>
+        <li><strong>2025</strong> – Released an open-source Flappy Bird clone that was made in Python.</li>
     </ul>
 </section>
 
@@ -78,8 +106,20 @@
 </section>
 
 <footer>
-    Built in 30 minutes. © 2025
+    Built in 1 hour. © 2025
 </footer>
+
+<script>
+const sections = document.querySelectorAll('section');
+const reveal = () => {
+  sections.forEach(sec => {
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100) sec.classList.add('show');
+  });
+};
+window.addEventListener('scroll', reveal);
+window.addEventListener('load', reveal);
+</script>
 
 </body>
 </html>
