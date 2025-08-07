@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stefan Coman - Personal Website</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700;900&display=swap" rel="stylesheet">
   <style>
@@ -18,18 +18,27 @@
       text-align:center;
       position:relative;
     }
-    body::before{ /* dark overlay so text pops */
+    body::before{
       content:'';
       position:absolute;
       inset:0;
       background:rgba(0,0,0,.55);
+      opacity:0;
+      animation:fadeIn 1s forwards;
       z-index:0;
     }
+    @keyframes fadeIn{to{opacity:1}}
+
     .wrap{
       position:relative;
       z-index:1;
       padding:2rem;
+      opacity:0;
+      animation:fadeUp .6s .3s forwards;
+      transform:translateY(20px);
     }
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
     nav{
       position:absolute;
       top:20px;
@@ -43,13 +52,12 @@
     }
     nav a{color:#e0e0e0;text-decoration:none}
     nav a:hover{color:#b4ff7a}
-    .meta{
-      font-size:14px;
-      opacity:.5;
-      margin-bottom:.5rem;
-    }
+
+    .meta{font-size:14px;opacity:.5;margin-bottom:.5rem}
+
     h1{font-size:4rem;font-weight:900}
     h2{font-size:4rem;font-weight:700;margin-bottom:1rem}
+
     .slider-box{
       border:1px solid #aaa;
       border-radius:20px;
@@ -64,19 +72,21 @@
       animation:slide 12s linear infinite;
     }
     .slider-track span{
-      min-width:240px;
+      flex:0 0 240px;
       text-align:center;
       color:#b4ff7a;
       line-height:1.8rem;
       font-weight:600;
     }
     @keyframes slide{
-      0%{transform:translateX(0)}
-      25%{transform:translateX(-240px)}
-      50%{transform:translateX(-480px)}
-      75%{transform:translateX(-720px)}
-      100%{transform:translateX(0)}
+      0%   {transform:translateX(0)}
+      20%  {transform:translateX(-240px)}
+      40%  {transform:translateX(-480px)}
+      60%  {transform:translateX(-720px)}
+      80%  {transform:translateX(-960px)}
+      100% {transform:translateX(-1200px)}
     }
+
     p{margin:.5rem 0;font-style:italic}
     .links{margin-top:1rem;font-family:monospace;font-size:14px}
     .links a{color:#e0e0e0;margin:0 .5rem;text-decoration:none}
@@ -97,13 +107,13 @@
     <div class="slider-box">
       <div class="slider-track">
         <span>Front-End Developer</span>
-        <span>Intern</span>
         <span>Optimizer</span>
         <span>UI/UX Enthusiast</span>
+        <span>Front-End Developer</span>
       </div>
     </div>
 
-    <p>bonjour!</p>
+    <p>Bonjour!</p>
     <p>Comeback later, maybe I'll have<br>finished this by then.</p>
 
     <div class="links">
@@ -112,7 +122,6 @@
   </div>
 
   <script>
-    // live clock
     const tick = () => {
       const [h,m] = new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}).split(':');
       document.getElementById('time').textContent = `${h}:${m}`;
